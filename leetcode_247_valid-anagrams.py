@@ -63,8 +63,9 @@ class Solution:
         if len(s) != len(t):
             return False
         for i in range(len(s)): #len of s or t
-            freqS[s[i]] = 1 + freqS.get(s[i], 0)
-            freqT[s[i]] = 1 + freqT.get(s[i], 0)
+            freqS[s[i]] = 1 + freqS.get(s[i], 0) #we are setting the value of 'value'  (key:value)- key are strings -letters in this case
+            freqT[t[i]] = 1 + freqT.get(t[i], 0) #.get() gives u value - so if some word is already in dict, ex - 'a' = 2 , it will run as:
+            #set value of a = 1+ 'value' of that key (2 in this case)
         return freqT == freqS
-    
+
     
