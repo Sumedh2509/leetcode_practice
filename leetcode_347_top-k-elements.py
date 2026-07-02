@@ -44,4 +44,36 @@ class Solution:
             final_list.append(sorted_list[freq][0]) #appending keys to the list
         return final_list
 
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freqN= {} 
+        my_list = list(set(nums)) #set deletes duplicates - converting to list makes it iterable -set isn't iterable
+        final_list = [] 
+        for item in my_list:
+            freqN[item] = 0  #setting initial frequency of each key to 0 
+        for i in range(len(nums)):
+            freqN[nums[i]] = 1+ freqN.get(nums[i], 0 ) #making real frequency table
+        sorted_list = sorted(freqN.items(), key=lambda x:x[1], reverse=True) #sorting directly descending #this is better
+        
+        for freq in range(k): 
+            final_list.append(sorted_list[freq][0]) #appending keys to the list
+        return final_list
 
+#bucket sort method - 
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for num in nums:
+            count[num] = 1 + count.get(num, 0)
+        for num, cnt in count.items():
+            freq[cnt].append(num)
+
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res

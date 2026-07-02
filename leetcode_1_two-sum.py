@@ -99,7 +99,7 @@ class Solution:
             diff = target - n #find complement 
             if diff in prevMap: 
                 return [prevMap[diff], i] #return if we find it 
-            prevMap[n] = i #store if we don't find it 
+            prevMap[n] = i #store the index of that number and that number as the key 
 
 
         

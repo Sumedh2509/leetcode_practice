@@ -67,5 +67,15 @@ class Solution:
             freqT[t[i]] = 1 + freqT.get(t[i], 0) #.get() gives u value - so if some word is already in dict, ex - 'a' = 2 , it will run as:
             #set value of a = 1+ 'value' of that key (2 in this case)
         return freqT == freqS
-
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        freqS = {}
+        freqT = {}
+        if len(s) != len(t):
+            return False
+        for letter in s:
+            freqS[s[letter]] = 1+ freqS.get(s[letter], 0 )
+        for letter in t:
+            freqT[t[letter]] = 1+ freqT.get(t[letter], 0 )
+        return freqS == freqT
     
