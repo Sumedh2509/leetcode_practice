@@ -43,7 +43,7 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         freq_table = [0] *26
         for i in range(len(s)):
-            freq_table[ord[i]- ord['a']] +=1 
+            freq_table[ord[i]- ord['a']] +=1  #wronggg
             freq_table[ord[i]- ord['a']] -=1 
         for val in freq_table:
             if val != 0:
@@ -63,5 +63,54 @@ class Solution:
         return [nums.index(sorted_nums[i]), nums.index(sorted_nums[j])] 
     
 
+#valid anagram
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        freq = [0]*26
+        for i in range(len(s)):
+            freq[ord(s[i])-ord('a')]+=1
+            freq[ord(t[i])-ord('a')]-=1
+        for val in freq:
+            if val!= 0:
+                return False
+        return True
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        map ={}
+
+        for i , n in enumerate(nums):
+            diff = target -n 
+            if diff in map:
+                return [map[diff], i]
+            map[n] = i 
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = defaultdict(list)
+        for str in strs:
+            a= [0]*26
+            for c in str:
+                a[ord(c)-ord('a')] +=1 
+            res[tuple(a)].append(s)
+
+        return list(res.values())
+    
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {} #making hashmap to store freq
+        buckets = [[] for i in range(len(nums)+1)] #create that many lists inside a list making it a 2d list
+
+        for num in nums: #this loop will create frequency table
+            count[num] = 1 + count.get(num, 0) 
+        for num, cnt in count.items():
+            buckets[cnt].append(num)
         
+        res =[]
+        for i in range(len(buckets)-1 , 0 , -1):
+            res.append(buckets[i])
+            if len(res) == k:
+                return res
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:

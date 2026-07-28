@@ -63,13 +63,13 @@ class Solution:
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = {}
-        freq = [[] for i in range(len(nums) + 1)]
+        count = {} #creating hashmap
+        freq = [[] for i in range(len(nums) + 1)] #creates a 2d list
 
         for num in nums:
-            count[num] = 1 + count.get(num, 0)
-        for num, cnt in count.items():
-            freq[cnt].append(num)
+            count[num] = 1 + count.get(num, 0) #get the value of num in dict and add one to it or if it doesn't exists give 0 so that its frequency will be 1
+        for num, cnt in count.items(): #if u use only count it only gives keys , with .items() it gives key value pair
+            freq[cnt].append(num)#at the cnt index (the location of list in our 2d list) append this number
 
         res = []
         for i in range(len(freq) - 1, 0, -1):
