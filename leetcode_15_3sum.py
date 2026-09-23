@@ -136,6 +136,7 @@ class Solution:
         for i, a in enumerate(nums):
             if a > 0:
                 break
+            #as we have sorted the list , the following numbers will always be bigger - so we can't form a 0
 
             if i > 0 and a == nums[i - 1]:
                 continue

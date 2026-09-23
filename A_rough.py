@@ -113,4 +113,113 @@ class Solution:
                 return res
 
 class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        hashmap = {")":"(", "]":"[", "}":"{"}
+        for char in s:
+            if char in hashmap:
+                if stack and stack[-1] == hashmap[char]:
+                    stack.pop()
+            else:
+                stack.append(char)
+        return True if not stack else False
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        map = {}
+        for i , n in enumerate(nums):
+            diff = target - n
+            if diff in map:
+                return [map[diff], i]
+            map[n] = i 
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = defaultdict(list) #creating a dict where values will be lists
+        for char in strs:
+            count = [0]*26 #creating an array for each character 
+            for c in char:
+                count[ord[c]-ord["a"]] +=1
+            res[tuple(count)].append(char)
+        return list(res.values())
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        map = {}
+        for i , n in enumerate(nums):
+            diff = target - n 
+            if diff in map:
+                return [map[diff], i ]
+            map[n] = i 
+
+class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        product_list = []
+        for i in range(len(nums)):
+            prev_prod = 1
+            for num in nums[:i]:
+                prev_prod *= num
+
+            forw_prod = 1
+            for num in nums[i+1:]:
+                forw_prod *= num
+
+            final_prod = prev_prod*forw_prod
+            product_list.append(final_prod)
+        return product_list
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+
+        for i, a in enumerate(nums):
+            if a>0:
+                break
+
+            if i>0 and a == nums[i-1]:
+                continue
+
+            l, r = 0, len(nums)-1
+            while l<r:
+                threesum = a + nums[l] + nums[r]
+                if threesum > 0 :
+                    r-=1 
+                elif threesum < 0 :
+                    l+=1
+                else:
+                    res.append([a, nums[l], nums[r]])
+                    r-=1 
+                    l+=1
+                    while nums[l] == nums[l-1] and l<r:
+                        l+=1 
+        return res
+
+
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        areas = []
+        for i in range(len(heights)):
+            for j in range(i+1 , len(heights)):
+                height = heights[i]
+                width = j-i
+                area = height*width
+                areas.append(area)
+        return max(areas)
+
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        res = 0
+        l= 0 , r = len(heights)-1
+        while l < r:
+            area = min(heights[r], heights[l]) * (r-l)
+            res = max(res, area)
+
+            if heights[l] > heights[r]:
+                r-=1
+            elif heights[l] < heights[r]:
+                l+=1
+            else:
+                r-=1
+        return res

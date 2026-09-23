@@ -38,6 +38,7 @@ class Solution:
             if char in hashmap:
                 if stack and stack[-1] == hashmap[char]:
                     #the above statement checks if stack is empty and if the last added character to stack matches the value 
+                    # the 'stack'- returns true if there is something in it 
                     stack.pop()
                     #we pop that out of the stack if they do match 
                     #note that we aren't adding close brackets into our stack 
