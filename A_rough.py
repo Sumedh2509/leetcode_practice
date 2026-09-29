@@ -223,3 +223,102 @@ class Solution:
             else:
                 r-=1
         return res
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        
+        prevmap = {}
+        
+        for ind, val in enumerate(nums):
+            diff = target-val
+            if diff in prevmap:
+                return [prevmap[diff], ind]
+            prevmap[val] = ind
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        prevMap = {}  # val -> index
+
+        for i, n in enumerate(nums): #iterating 
+            diff = target - n #find complement 
+            if diff in prevMap: 
+                return [prevMap[diff], i] #return if we find it 
+            prevMap[n] = i #store the index of that number and that number as the key 
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freqmap = {}
+        final_list = []
+        for i in nums:
+            freqmap[i] = freqmap.get(i, 0) + 1  # Fix 1
+        sorted_list = sorted(freqmap.items(), key=lambda x:x[1], reverse=True)
+        for i in range(k):
+            final_list.append(sorted_list[i][0])  # Fix 2
+        return final_list
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        final_list= []
+        for i in range(len(nums)):
+            prevprod =1 
+            for i in range(nums[:i]):
+                prevprod *= i
+
+            forwprod = 1
+            for i in range(nums[i+1:len(nums)-1]):
+                forwprod *= i
+
+        totalprod = prevprod*forwprod
+        final_list.append(totalprod)
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        pdt_list = []
+        for i in range(len(nums)):
+            product_prev = 1  #we have to initialize this otherwise the loop doesn't run 
+            for num in nums[0:i]:
+                product_prev *= num
+            
+            product_forw = 1 
+            for num in nums[i+1::]:
+                product_forw *= num
+            
+        final_ans = product_prev * product_forw
+        pdt_list.append(final_ans)
+        return pdt_list
+
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        pdt_list = []
+        for i in range(len(nums)):
+            product_prev = 1  
+            for num in nums[0:i]:
+                product_prev *= num
+            
+            product_forw = 1 
+            for num in nums[i+1::]:
+                product_forw *= num
+            
+            final_ans = product_prev * product_forw
+            pdt_list.append(final_ans)
+        return pdt_list
+
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        l ,r = 0, len(heights)-1 #setting the pointers upp
+        res = 0 
+        while l<r:
+            width = r-l
+            length = min(heights[r], heights[l])
+            area= length*width
+            res = max(res, area)
+
+            if heights[l] > heights[r]:
+                r-=1
+            elif heights[l] < heights[r]:
+                l+=1
+            else:
+                r-=1 
+        return res
