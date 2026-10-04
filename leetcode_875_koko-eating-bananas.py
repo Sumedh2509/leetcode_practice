@@ -18,10 +18,11 @@ class Solution:
             
 
             if hours <= h:  #we using = as it is alright if we finish it exactly in given time 
-                res = k  #finding the minimum
-                r = k-1
+                #the above statement just means , look for that speed if it is alright 
+                res = k  #then save it 
+                r = k-1 # try slower speeds
 
-            else:
+            else:  #if it takes more time than we have, try higher speeds
                 l = k+1
             
         return res

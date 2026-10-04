@@ -322,3 +322,105 @@ class Solution:
             else:
                 r-=1 
         return res
+
+class Solution:
+    def search(self, nums: List[int], target:int) -> int:
+        l,r = 0, len(nums)-1
+
+        while l<=r:
+            m = (l+r)//2
+            if nums[m]> target:
+                r = m-1
+            else:
+                l = m+1
+        return m
+
+
+def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    top , bot = 0 , len(matrix)-1
+
+    while top<=bot:
+        row = (top+bot)//2
+        if matrix[row][-1] < target:
+            top = row+1
+        elif matrix[row][0] > target:
+            bot = row-1
+        else:
+            break #we also have to search withing this row 
+
+    if not (top<=bot):
+        return False
+    
+    row = (top+bot)//2
+    l ,r = 0, len(matrix[row])-1
+
+    while l<=r:
+        m = (l+r)//2
+        if matrix[row][m]==target:
+            return True
+        elif matrix[row][m]>target:
+            r = m-1
+        else:
+            l= m+1
+        
+    return False
+
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        top, bot = 0, len(matrix) - 1
+
+        while top <= bot:
+            row = (top + bot) // 2
+            # BUG: You wrote "if row[-1]>target" but row is an INDEX (integer), not the actual row data!
+            if matrix[row][-1] < target:  # FIXED: Use matrix[row][-1]
+                top = row + 1
+            # BUG: You wrote "elif row[0] < target" same issue
+            elif matrix[row][0] > target:  # FIXED: Use matrix[row][0]
+                bot = row - 1
+            else:
+                break  # BUG: You wrote "return False" but should break to search within this row!
+
+        # BUG: You didn't check if the row is valid after the loop
+        if not (top <= bot):
+            return False
+
+        row = (top + bot) // 2
+        l, r = 0, len(matrix[row]) - 1  # FIXED: Added matrix[row] to get actual row
+
+        while l <= r:
+            m = (l + r) // 2
+            if matrix[row][m] == target:  # FIXED: Check if EQUAL first
+                return True
+            elif matrix[row][m] < target:
+                l = m + 1
+            else:
+                r = m - 1
+        
+        # BUG: You wrote "return True" but should return False (didn't find target!)
+        return False  # FIXED: Return False if not found
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        prevmap = {}
+        for index, value in enumerate(nums):
+            diff = target - value
+            if diff in prevmap:
+                return [prevmap[diff] , index]
+            prevmap[value] = index
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        prevMap = {}  # val -> index
+
+        for i, n in enumerate(nums): #iterating 
+            diff = target - n #find complement 
+            if diff in prevMap: 
+                return [prevMap[diff], i] #return if we find it 
+            prevMap[n] = i #store the index of that number and that number as the key 
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
