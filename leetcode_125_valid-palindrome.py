@@ -55,13 +55,14 @@ class Solution:
         l, r = 0, len(s) - 1 #two pointers , one at beginning and one at end 
 
         while l < r: 
+            #inner loops are for skipping junk , skipping spaces and stuff
             while l < r and not self.alphaNum(s[l]):
                 l += 1
             while r > l and not self.alphaNum(s[r]):
                 r -= 1
-            if s[l].lower() != s[r].lower():
+            if s[l].lower() != s[r].lower(): #compairing what we found
                 return False
-            l, r = l + 1, r - 1
+            l, r = l + 1, r - 1 #moving the pointers
         return True
     #creating a function yourselves that checks if the char is alphanum instead of using a .isalnum()
     def alphaNum(self, c):

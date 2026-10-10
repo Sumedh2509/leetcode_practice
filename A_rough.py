@@ -423,4 +423,62 @@ class Solution:
 
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def isPalindrome(self, s: str) -> bool:
+        l, r = 0 , len(s)-1 
+        while l<r:
+            #inner loops are for skipping junk
+            while l<r and not self.isalnum(s[l]):
+                l+=1
+            while l<r and not self.isalnum(s[r]):
+                l+=1
+            if s[l].lower() != s[r].lower():
+                return False
+            l , r = l+1, r+1
+        return True
+
+
+    def isalnum(self, c):
+        return(ord('A')<ord(c)<ord('Z')) or (ord('a')<ord(c)<ord('z')) or (ord('0')<ord(c)<ord('9'))
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0 , len(numbers)-1
+        #return 1-indexed list
+        while l<=r:
+            if numbers[l] + numbers[r] > target:
+                r -=1
+            else:
+                l+=1
+        return [l+1 , r+1]
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        #remember we can't have duplicates in it , so find a way to eliminate when shit duplicates
+        res =[]
+        nums.sort()
+
+        
+        for i in range(len(nums)-2):
+            if i>0 and nums[i] == nums[i-1]:
+                continue #this will remove the duplicate pivotes
+            l , r = i+1 , len(nums)-1
+            target = 0 - nums[i]
+            while l<=r:
+                #there might be duplicates in poniters themselves tho
+                
+                if nums[l]+ nums[r] > target:
+                    r-=1
+                elif nums[l] + nums[r] < target:
+                    l+=1
+                else:
+                    res.append(nums[i] , nums[l], nums[r])
+                    l +=1
+                    r-=1
+                    while l<r and nums[l] == nums[l-1]:
+                        l+=1
+
+        return res 
+
+
+class Solution:
+    def trap(self, height: List[int]) -> int:

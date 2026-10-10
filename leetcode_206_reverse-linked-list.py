@@ -26,6 +26,8 @@ Constraints:
 #         self.val = val  # every object u create will have its value and something that it is pointing to
 #         self.next = next
 
+#iterative method
+#this is the most optimal solution  - time complexity O(n) , memory complexity O(1)
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr = head
@@ -39,3 +41,17 @@ class Solution:
         return prev #at some point, curr will become none as we keep incrementing it , at that time prev will be the last element of our original linked list, and as we are reversing
     # naturally our head 
 
+
+#recursive method
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
+        newHead = head
+        if head.next:
+            newHead = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+
+        return newHead
