@@ -478,7 +478,60 @@ class Solution:
                         l+=1
 
         return res 
+'''
+Given an array of strings strs, group all anagrams together into sublists. You may return the output in any order.
 
+An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+Example 1:
+
+Input: strs = ["act","pots","tops","cat","stop","hat"]
+
+Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
+Example 2:
+
+Input: strs = ["x"]
+
+Output: [["x"]]
+Example 3:
+
+Input: strs = [""]
+
+Output: [[""]]
+Constraints:
+
+1 <= strs.length <= 1000.
+0 <= strs[i].length <= 100
+strs[i] is made up of lowercase English letters.
+'''
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        #the idea was to count frequency and store similar words using frequency
+        #frequency was counted using ord function
+        #you used a hashmap , which had the sorted word as the key , and u assigned that word as the value to that key
+        #what I don't recall is how do you even make the key 
+
+        hashmap = defaultdict(list) 
+
+        #trying to make keys - 
+        for str in strs:
+            sorted_str = ''.join(sorted(str)) #creating the key for each string
+            hashmap[sorted_str].append(str) #hashmap mai , sorted_str naam ki key banao , aur usme orignal string store karo
+        return list(hashmap.values())
+
+
+#the best method , make frequency tables - use them as the keys and store string that match similar frequency in list of that key
 
 class Solution:
-    def trap(self, height: List[int]) -> int:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        hashmap= defaultdict(list)
+
+        for str in strs:
+            count = [0]*26 #creating a big ahh list
+            for char in str:
+                count[ord[char]- ord['a']] +=1  
+            hashmap[tuple(count)].append(str)
+        return list(hashmap.values())
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
