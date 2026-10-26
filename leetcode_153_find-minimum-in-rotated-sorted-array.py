@@ -59,4 +59,15 @@ class Solution:
                 r= m-1
         return res
 
+#the concept - we wanna find, if we are left portion or right portion of the rotated sorted array
+        
+        #if we are in left portion - we search the right portion 
+        #in a rotated sorted array (rsa) it makes sense that in this case, the min will lie in the right portion
+        #as when we rotate, we take the max value and put it in the first 
+        #so minimum becomes the left most value of our right portion 
+
+        #if we are in right portion - we search in left portion 
+        #by being in right portion it just means (our pivot exists in left portion)
+        #our middle value is in right portion so anything that is to the right of it will be greater than it is
+        #so we search to the left
 

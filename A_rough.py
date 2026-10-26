@@ -534,4 +534,70 @@ class Solution:
         return list(hashmap.values())
 
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def search(self, nums: List[int], target:int) -> int:
+
+        l , r = 0 , len(nums)-1
+
+        while l<=r:
+            m = (l+r)//2
+            if nums[m] > target:
+                r = m-1
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                return m
+        return -1
+
+
+# Example 1:
+
+# Input: nums = [3,4,5,6,1,2]
+
+# Output: 1
+# Example 2:
+
+# Input: nums = [4,5,0,1,2,3]
+
+# Output: 0
+# Example 3:
+
+# Input: nums = [4,5,6,7]
+
+# Output: 4
+
+class Solution: #return the minimum in rotated sorted array
+    def findMin(self, nums: List[int]) -> int:
+        #the concep was to find where things break  
+        #the concept - we wanna find, if we are left portion or right portion of the rotated sorted array
+        
+        #if we are in left portion - we search the right portion 
+        #in a rotated sorted array (rsa) it makes sense that in this case, the min will lie in the right portion
+        #as when we rotate, we take the max value and put it in the first 
+        #so minimum becomes the left most value of our right portion 
+
+        #if we are in right portion - we search in left portion 
+        #by being in right portion it just means (our pivot exists in left portion)
+        #our middle value is in right portion so anything that is to the right of it will be greater than it is
+        #so we search to the left
+
+
+        res = nums[0]
+        l , r = 0 , len(nums)-1
+
+        
+
+        while l<=r:
+            if nums[l] <= nums[r]: #condition that the array is already sorted
+                return min(res, nums[l])
+            m = (l+r)//2
+            res = min(res, nums[m])
+
+            if nums[l] <= nums[m]:
+                l = m+1
+            else:
+                r = m-1
+        return res
+
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
