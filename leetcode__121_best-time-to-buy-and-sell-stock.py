@@ -42,16 +42,15 @@ class Solution:
 #we gonna slide da window
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        l ,  r = 0 , 1 
-        maxp = 0 
-
-        while r < len(prices):
-            if prices[l] < prices[r]:
-                profit = prices[r] - prices[l]
-                maxp = max(maxp, profit)
-            else:
+        l ,  r = 0 , 1 #setting up two pointers next to each other
+        maxp = 0  #to sotre
+        while r < len(prices):  #whie while we aren't done going through the entire array
+            if prices[l] < prices[r]:  #comparing prices
+                profit = prices[r] - prices[l] #profit
+                maxp = max(maxp, profit) 
+            else:    #if we ever find a lower price , we put our left pointer to that point
                 l = r
-            r+=1 
+            r+=1  #updating the value of r
 
         return maxp
 
