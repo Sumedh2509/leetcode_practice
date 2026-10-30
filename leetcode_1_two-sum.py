@@ -101,5 +101,3 @@ class Solution:
                 return [prevMap[diff], i] #return if we find it 
             prevMap[n] = i #store the index of that number and that number as the key 
 
-
-        

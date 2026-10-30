@@ -86,4 +86,15 @@ class Solution:
         
                 
             
-        
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        hashmap = defaultdict(list)
+
+        for str in strs:
+            freq = [0] * 26
+            for s in str:
+                freq[ord(s) - ord('a')] += 1
+            hashmap[(tuple(freq))].append(str)
+        return list(hashmap.values())
+            

@@ -104,6 +104,3 @@ class Solution:
         return True  #if it executes completely , then it is a valid sudoku 
 
 
-
-
-           

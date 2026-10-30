@@ -598,6 +598,48 @@ class Solution: #return the minimum in rotated sorted array
                 r = m-1
         return res
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {} 
+        for ind, val in enumerate(nums):
+            diff = target - val
+            if diff in hashmap:
+                return [hashmap[val] , ind]
+            else:
+                hashmap[val] = ind
 
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        hashmap = defaultdict(list)
+
+        for str in strs:
+            freq = [] * 26
+            for s in str:
+                freq[ord(s) - ord('a')] += 1
+            hashmap(tuple(freq)).append(str)
+        return list(hashmap.values())
+
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        l , r = 0 , len(heights)-1 
+        maxA = 0 
+
+        while l < r:
+            area = (r-l) * min(heights[l] , heights[r])
+            maxA = max(maxA , area)
+
+            if heights[l] < heights[r]:
+                l+=1
+            elif heights[r] < heights[l]:
+                r+=1
+            else:
+                r+=1 
+        return maxA
+
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        hashmap = {"{":"}"}
+
+            
