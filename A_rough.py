@@ -640,6 +640,59 @@ class Solution:
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        hashmap = {"{":"}"}
+        hashmap = {"}":"{" , ")":"(", "]":"["}
+        stack = []
 
-            
+        for char in s:
+            if char in hashmap:
+                if stack and stack[-1] == hashmap[char]:
+                    stack.pop()
+                else:
+                    return False
+
+            else:
+                stack.append(char)
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = [] 
+        n = len(temperatures)
+        res = [0] * n
+        for ind , val in enumerate(temperatures):
+            if stack and stack[-1][1] < val:
+                stackind , stackval = stack.pop()
+
+                res[stackind] = ind - stackind 
+            else:
+                stack.append((ind, val))
+
+        return res
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures) #intializing an array with default values of 0
+        stack = []  # pair: [index, temp] (kim- this thing stores tupples)
+
+        for i, t in enumerate(temperatures): #enumerating - taking index  and values
+            while stack and t > stack[-1][1]: 
+                #cheks if stack is not empty (i.e doesn't run on the first iteration)
+                #stack[-1] --> top of the stack -->this will point to a tupple
+                #stack[-1][1] --> indicates the *2nd* value of tupple (which is value of temp)
+
+
+                stackInd, stackval = stack.pop() #stackInd = index, stackval = temp , we need to pop those 
+                #these popped values are now temporarily stored in stackInd and stackval
+
+                res[stackInd] = i - stackInd  
+                #stackInd is basically the index of number we are popping and i is the current index we are on
+                #so since we did find the temperature greater than that of the day on top of stack--> t>stack[-1][1]
+                # we are finding the distance between the previous top and current instance of higher temp 
+
+
+            stack.append((i, t))
+        return res
+
+
+#koko eating bananas
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:

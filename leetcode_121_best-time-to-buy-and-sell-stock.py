@@ -44,7 +44,7 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         l ,  r = 0 , 1 #setting up two pointers next to each other
         maxp = 0  #to sotre
-        while r < len(prices):  #whie while we aren't done going through the entire array
+        while r < len(prices):  #while we aren't done going through the entire array
             if prices[l] < prices[r]:  #comparing prices
                 profit = prices[r] - prices[l] #profit
                 maxp = max(maxp, profit) 
