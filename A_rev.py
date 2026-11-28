@@ -80,3 +80,32 @@ class Solution:
                 l = k + 1
             
         return res 
+
+
+#core idea was finding which car was behind which car 
+#if the car behind had less time required than car in the front that meant that it would form a fleet
+#we take position and speed and make it a list which has tuples inside 
+#and sort it on basis of position 
+#then we calculate time required to reach the target position 
+#while the top car (top of stack) requires more time than the car right behind it (stack[-2]) we pop one element in stack
+
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+
+        combined = []
+        for i in range(len(position)):
+            combined.append((position[i], speed[i]))
+
+        combined.sort(reverse=True) #this sorts on basis of the first element of tupple inside
+
+        #creating a stack of time required to reach the target
+        stack = []
+        for element in combined:
+            stack.append((target - element[0])/element[1])
+
+            while  len(stack) >=2 and stack[-1] <= stack[-2]:
+                stack.pop()
+        return len(stack)
+
+
+        
