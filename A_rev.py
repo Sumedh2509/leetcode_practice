@@ -57,6 +57,26 @@ class Solution:
             if freqs1 == windowfreq: return True
         return False
 
+
+#we know that solution does exists for every given input
+#so the worst case would be to eat with rate of max(piles) 
+#so we can apply binary search over 1 - max(piles) 
+#we will calculate hours it takes for each of the rate and record it 
+#whichever will be minimum will be our answer
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l , r = 1 , max(piles)
+        res= 0 #variable to keep track of minimum 
 
+        while l <= r:
+            k = (l+r)//2 
+            hours = 0 
+            for pile in piles:
+                hours+= (pile + k-1)//k
+
+            if hours <= h: 
+                r = k -1  
+            else:
+                l = k + 1
+            
+        return res 
