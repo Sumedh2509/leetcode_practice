@@ -107,5 +107,25 @@ class Solution:
                 stack.pop()
         return len(stack)
 
+#the core idea was to put one pointer in the beginning and other at the end 
+#record the area
+#move the pointer based on which bar was lower , if the right bar is smaller move that
+#go through the whole list and find the maxA that way
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        l ,r = 0 , len(heights)
+        maxA = 0
+
+        while l < r:
+            area = min(heights[l], heights[r])*(r-l)
+            maxA = max(maxA , area)
+
+            if heights[l] <= heights[r]: 
+                l+=1 
+            else:
+                r-=1 
+        return maxA
+             
+
 
         
